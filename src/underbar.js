@@ -8,6 +8,7 @@ var _ = {};
   // seem very useful, but remember it--if a function needs to provide an
   // iterator when the user does not pass one in, this will be handy.
   _.identity = function(val) {
+      return val;
   };
 
   /**
@@ -32,12 +33,22 @@ var _ = {};
   // Return an array of the first n elements of an array. If n is undefined,
   // return just the first element.
   _.first = function(array, n) {
-    return n === undefined ? array[0] : array.slice(0, n);
+      return n === undefined ? array[0] : array.slice(0,n);
   };
 
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+
+      if (n === undefined) {
+          return array[array.length -1]
+      }
+      else if ( n > array.length){
+          return array;
+      }
+      else {
+          return array.slice( array.length - n);
+     }
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -46,6 +57,7 @@ var _ = {};
   // Note: _.each does not have a return value, but rather simply runs the
   // iterator function over each item in the input collection.
   _.each = function(collection, iterator) {
+    
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
