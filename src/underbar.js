@@ -189,9 +189,9 @@ var _ = {};
       }
       else {total = 0}
 
-        for (var i = 0; i < collection.length; i++){
-            total = iterator(total, collection[i]);
-        }
+      _.each(collection, function(item){
+            total = iterator(total, item );
+        });
         return total;
   };
 
