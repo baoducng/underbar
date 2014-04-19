@@ -167,6 +167,15 @@ var _ = {};
   // Note: you will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
 
+        for (var i = 0; i < collection.length; i++){
+          if (typeof functionOrKey === "function"){
+            collection[i] =functionOrKey.apply(collection[i], args);
+          }
+          else  {
+            collection[i] = collection[i][functionOrKey].apply(collection[i], args)
+          }
+        }
+           return collection
   };
 
 
