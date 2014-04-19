@@ -9,7 +9,7 @@ var _ = {};
   // iterator when the user does not pass one in, this will be handy.
   _.identity = function(val) {
       return val;
-  }
+  };
 
   /**
    * COLLECTIONS
@@ -268,6 +268,12 @@ var _ = {};
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+      for (var i =0; i < arguments.length; i++){
+          for (var k in arguments[i]){
+              if (obj[k] === undefined){obj[k] = arguments[i][k]}
+          }
+      }
+      return obj;
   };
 
 
