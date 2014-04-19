@@ -9,7 +9,7 @@ var _ = {};
   // iterator when the user does not pass one in, this will be handy.
   _.identity = function(val) {
       return val;
-  };
+  }
 
   /**
    * COLLECTIONS
@@ -136,9 +136,11 @@ var _ = {};
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
         var result = [];
+
           for (var i =0; i < collection.length; i++){
               result[i] = iterator(collection[i], i, collection)
           }
+
         return result;
 
   };
@@ -187,7 +189,7 @@ var _ = {};
       if (accumulator !== undefined){
           total = accumulator;
       }
-      else {total = 0}
+      else {total = collection[0]}
 
       _.each(collection, function(item){
             total = iterator(total, item );
@@ -212,6 +214,15 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
+      return  _.reduce(collection, function(check, item){
+           if (check){
+               if (typeof iterator === "function"){
+                  if (iterator(item)){return true}
+               }
+               else {return check = item}
+          }
+          return false;
+      }, true)
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
