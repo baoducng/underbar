@@ -324,6 +324,14 @@ var _ = {};
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+      var cache = {};
+      return function(arg){
+          if (arg in cache){
+              return cache[arg]
+          }
+          cache[arg] = func(arg);
+          return cache[arg]
+      }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -333,6 +341,7 @@ var _ = {};
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+
   };
 
 
