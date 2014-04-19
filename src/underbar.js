@@ -233,7 +233,7 @@ var _ = {};
           if (typeof iterator === "function"){
               return !iterator(item)
           }
-          return item //in this case it is just item instead of !item because there is no iterator
+          return item; //in this case it is just item instead of !item because there is no iterator
       })
 
   };
@@ -257,6 +257,12 @@ var _ = {};
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+      for (var i =0; i < arguments.length; i++){
+          for (var k in arguments[i]){
+              obj[k] = arguments[i][k]
+          }
+      }
+      return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
