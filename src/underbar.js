@@ -219,7 +219,7 @@ var _ = {};
                if (typeof iterator === "function"){
                   if (iterator(item)){return true}
                }
-               else {return check = item}
+               else {return item}
           }
           return false;
       }, true)
@@ -229,8 +229,14 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-  };
+      return !_.every(collection, function(item){
+          if (typeof iterator === "function"){
+              return !iterator(item)
+          }
+          return item //in this case it is just item instead of !item because there is no iterator
+      })
 
+  };
 
   /**
    * OBJECTS
